@@ -5,7 +5,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import { get } from 'lodash'
+
 import Image from './Image';
+import Abilities from './Abilities';
+import Moves from './Moves';
 
 const Pokemon = () => {
   const { id } = useParams()
@@ -37,20 +41,17 @@ const Pokemon = () => {
         <Image pokemon={pokemon} />
         
         <CardContent>
+
+
           <Typography gutterBottom variant="h5" component="div">
-            {pokemon.name}
+            {get(pokemon, 'name')}
           </Typography>
-          {pokemon.abilities.map((ability, index) => (
-            <Typography key={index} variant="body2" color="text.secondary">
-              {ability.ability.name}
-            </Typography>
-          ))}
-          {pokemon.moves.map((move, index) => (
-            <Typography key={index} variant="body2" color="text.secondary">
-              {move.move.name}
-            </Typography>
-          ))}
+          
         </CardContent>
+        
+        <Abilities pokemon={pokemon} />
+
+        <Moves pokemon={pokemon} />
 
       </Card>
     </Container>
