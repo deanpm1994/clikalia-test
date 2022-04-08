@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
@@ -75,7 +75,7 @@ const PokemonList = () => {
                 >
                   <TableCell>{pokemon.name}</TableCell>
                   <TableCell>
-                    <Link to={`pokemon/${pokemon.url}`}>
+                    <Link to={`/${[...pokemon.url.matchAll(/pokemon\/.*\/$/g)][0]}`}>
                       {pokemon.url}
                     </Link>
                   </TableCell>
