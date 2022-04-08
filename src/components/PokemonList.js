@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -8,6 +9,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
+import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -18,8 +20,9 @@ const PokemonList = () => {
     page: 0,
     limit: 20,
   })
+  const [filter, setFilter] = useState('')
   const total = useSelector(totalPokemons)
-  const pokemons = useSelector(pokemonsSlice(params))
+  const pokemons = useSelector(pokemonsSlice(params, filter))
 
   const handleChangePage = (event, pageToChange) => {
     setParams({
@@ -28,8 +31,25 @@ const PokemonList = () => {
     })
   }
 
+  const handleFilter = name => {
+    if (name !== filter) {
+      if (!!params.page)
+        setParams({ page: 0, limit: 20 })
+      setFilter(name)
+    }
+  }
+
   return (
     <Container maxWidth="md" sx={{ paddingTop: '2.5rem' }}>
+      <Box sx={{ padding: '2rem .5rem' }}>
+        <TextField
+          sx={{ width: '100%' }}
+          label="Find pokemon"
+          variant="standard"
+          onChange={event => handleFilter(event.target.value)}
+        />
+      </Box>
+
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer sx={{ maxHeight: '80vh' }}>
           <Table stickyHeader aria-label="sticky table">
