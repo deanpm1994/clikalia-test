@@ -16,10 +16,8 @@ const Abilities = ({ pokemon }) => {
     <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
       >
-        <Typography>Habilidades</Typography>
+        <Typography>Abilities</Typography>
       </AccordionSummary>
       <AccordionDetails>
         {pokemon.abilities.map((ability, index) => (

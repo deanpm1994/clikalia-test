@@ -5,9 +5,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import axios from 'axios';
 import { get } from 'lodash'
 
+import api from '../../reducers/api'
 import Image from './Image';
 import Abilities from './Abilities';
 import Moves from './Moves';
@@ -18,8 +18,8 @@ const Pokemon = () => {
   const [pokemon, setPokemon] = useState(null)
 
   const getPokemon = useCallback(
-    (id) => {
-      axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    async (id) => {
+      await api.get(`pokemon/${id}`)
         .then(response => {
           setPokemon(response.data)
         })
@@ -33,8 +33,6 @@ const Pokemon = () => {
   useEffect(() => {
     getPokemon(id)
   }, [getPokemon, id])
-
-  console.log(pokemon)
 
   return (
     <Container maxWidth="md" sx={{ padding: '2.5rem 0' }}>

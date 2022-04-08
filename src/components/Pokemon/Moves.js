@@ -7,7 +7,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { get } from 'lodash'
+import { get, sortBy } from 'lodash'
 
 const Moves = ({ pokemon }) => {
   if (!get(pokemon, 'moves.length')) return null
@@ -16,13 +16,13 @@ const Moves = ({ pokemon }) => {
     <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
       >
-        <Typography>Movimientos</Typography>
+        <Typography>Moves</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {pokemon.moves.map((move, index) => (
+        {sortBy(pokemon.moves, ['move.url'])
+          .reverse()
+          .map((move, index) => (
           <List key={index}>
             <ListItem disablePadding>
               <ListItemText primary={move.move.name} />

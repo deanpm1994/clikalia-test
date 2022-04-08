@@ -18,8 +18,8 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <Container maxWidth="md" className="bg-primary">
-        <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }}>
+      <Container maxWidth="md">
+        <Box sx={{ bgcolor: '#cfe8fc', minHeight: '100vh',  }}>
           <BrowserRouter>
             <Routes>
               <Route path="/pokemon/:id" element={<Pokemon />} />
