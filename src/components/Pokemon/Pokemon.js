@@ -35,7 +35,6 @@ const Pokemon = () => {
   }, [getPokemon, id])
 
   console.log(pokemon)
-  if (!pokemon) return null
 
   return (
     <Container maxWidth="md" sx={{ padding: '2.5rem 0' }}>

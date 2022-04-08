@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
@@ -8,53 +8,24 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { totalPokemons, pokemonsSlice } from '../selectors/pokemons';
 
 const PokemonList = () => {
-  const [pokemons, setPokemons] = useState([])
-  const [page, setPage] = useState(0)
-  const [count, setCount] = useState(0)
-  const [next, setNext] = useState(0)
-  const [previous, setPrevious] = useState(0)
-
-  const getPokemons = useCallback(
-    (url) => {
-      axios.get(url
-        ? url
-        : 'https://pokeapi.co/api/v2/pokemon', {
-        params: {
-          limit: 20,
-        }
-      })
-        .then(response => {
-          console.log(response.data)
-
-          setPokemons(response.data.results)
-          setNext(response.data.next)
-          setPrevious(response.data.previous)
-          setCount(response.data.count)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    [],
-  )
-
-  useEffect(() => {
-    getPokemons()
-  }, [getPokemons])
+  const [params, setParams] = useState({
+    page: 0,
+    limit: 20,
+  })
+  const total = useSelector(totalPokemons)
+  const pokemons = useSelector(pokemonsSlice(params))
 
   const handleChangePage = (event, pageToChange) => {
-    if (pageToChange > page && next) {
-      getPokemons(next)
-      setPage(pageToChange)
-    }
-    if (pageToChange < page && previous) {
-      getPokemons(previous)
-      setPage(pageToChange)
-    }
+    setParams({
+      ...params,
+      page: pageToChange
+    })
   }
 
   return (
@@ -88,9 +59,9 @@ const PokemonList = () => {
       <TablePagination
         rowsPerPageOptions={[20]}
         component="div"
-        count={count}
+        count={total}
         rowsPerPage={20}
-        page={page}
+        page={params.page}
         onPageChange={handleChangePage}
       // onRowsPerPageChange={handleChangeRowsPerPage}
       />
