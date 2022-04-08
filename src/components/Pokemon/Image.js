@@ -31,7 +31,8 @@ const Image = ({ pokemon }) => {
           alt={get(pokemon, 'name')}
           sx={{
             borderRadius: '100%',
-            border: '1px solid red',
+            border: '1px solid',
+            borderColor: colors.blue[100],
             width: '10rem',
             minWidth: '5rem',
             margin: 'auto',

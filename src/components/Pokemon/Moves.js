@@ -3,6 +3,9 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { get } from 'lodash'
 
@@ -20,9 +23,11 @@ const Moves = ({ pokemon }) => {
       </AccordionSummary>
       <AccordionDetails>
         {pokemon.moves.map((move, index) => (
-          <Typography key={index} variant="body2">
-            {move.move.name}
-          </Typography>
+          <List key={index}>
+            <ListItem disablePadding>
+              <ListItemText primary={move.move.name} />
+            </ListItem>
+          </List>
         ))}
       </AccordionDetails>
     </Accordion>

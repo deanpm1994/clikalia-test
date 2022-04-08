@@ -3,14 +3,11 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { get } from 'lodash'
 
-const Abilities = ({ pokemon }) => {
-  if (!get(pokemon, 'abilities.length')) return null
+const Forms = ({ pokemon }) => {
+  if (!get(pokemon, 'moves.length')) return null
 
   return (
     <Accordion>
@@ -19,19 +16,17 @@ const Abilities = ({ pokemon }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography>Habilidades</Typography>
+        <Typography>Formas</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {pokemon.abilities.map((ability, index) => (
-          <List key={index}>
-            <ListItem disablePadding>
-              <ListItemText primary={ability.ability.name} />
-            </ListItem>
-          </List>
+        {pokemon.forms.map((form, index) => (
+          <Typography key={index} variant="body2">
+            {form.url}
+          </Typography>
         ))}
       </AccordionDetails>
     </Accordion>
   )
 }
 
-export default Abilities
+export default Forms
