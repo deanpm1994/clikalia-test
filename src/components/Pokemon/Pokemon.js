@@ -40,7 +40,10 @@ const Pokemon = () => {
   }, [getPokemon, name])
 
   return (
-    <Container maxWidth="md" sx={{ padding: '2.5rem 0' }}>
+    <Container 
+      maxWidth="md" sx={{ padding: '2.5rem 0' }}
+      data-testid="pokemon-component"
+    >
       <Loading open={loading} />
       <Retry open={!!error} onRetry={() => getPokemon(name)}/>
 
@@ -48,25 +51,17 @@ const Pokemon = () => {
         <Image pokemon={pokemon} />
 
         <CardContent>
-
-
           <Typography gutterBottom variant="h4" component="div">
             {get(pokemon, 'name')}
           </Typography>
 
         </CardContent>
-
-
       </Card>
 
       <Box sx={{ maxWidth: '20rem', margin: '1rem auto' }}>
-
         <Abilities pokemon={pokemon} />
-
         <Moves pokemon={pokemon} />
-
         <Forms pokemon={pokemon} />
-
       </Box>
 
     </Container>
