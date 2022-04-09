@@ -17,8 +17,7 @@ const Form = props => {
       try {
         const response = await api.get(`pokemon-form/${name}`)
         setForm(response.data)
-      } catch (error) {
-        console.log(error)
+      } catch {
       }
     }, [])
 

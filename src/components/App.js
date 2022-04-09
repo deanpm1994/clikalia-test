@@ -3,15 +3,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-import Pokemons from './components/Pokemons/Pokemons';
-import Pokemon from './components/Pokemon/Pokemon';
-import { loadPokemons } from './reducers/pokemons'
-import { loadingPokemons } from './selectors/pokemons'
+import Pokemons from './Pokemons/Pokemons';
+import Pokemon from './Pokemon/Pokemon';
+import { loadPokemons } from '../reducers/pokemons'
+import { loadingPokemons, errorPokemons } from '../selectors/pokemons'
+import Loading from './common/Loading';
+import Retry from './common/Retry';
 
 const theme = createTheme({
   palette: {
@@ -37,6 +37,7 @@ const theme = createTheme({
 function App() {
   const dispatch = useDispatch()
   const loading = useSelector(loadingPokemons)
+  const error = useSelector(errorPokemons)
 
   useEffect(() => {
     dispatch(loadPokemons())
@@ -46,24 +47,20 @@ function App() {
     <Box sx={{ bgcolor: '#fff' }}>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-      <Container maxWidth="md">
-        <Box sx={{ minHeight: '100vh',  }}>
-          
-          <Backdrop 
-            open={loading}
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
+        <Container maxWidth="md">
+          <Box sx={{ minHeight: '100vh', }}>
 
-          <BrowserRouter>
-            <Routes>
-              <Route path="/pokemon/:name" element={<Pokemon />} />
-              <Route path="/" element={<Pokemons />} />
-            </Routes>
-          </BrowserRouter>
-        </Box>
-      </Container>
+            <Loading open={loading} />
+            <Retry open={error} onRetry={() => dispatch(loadPokemons())}/>
+
+            <BrowserRouter>
+              <Routes>
+                <Route path="/pokemon/:name" element={<Pokemon />} />
+                <Route path="/" element={<Pokemons />} />
+              </Routes>
+            </BrowserRouter>
+          </Box>
+        </Container>
 
       </ThemeProvider>
     </Box>

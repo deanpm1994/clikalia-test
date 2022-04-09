@@ -27,3 +27,8 @@ export const loadingPokemons = createDraftSafeSelector(
   pokemosState,
   state => get(state, 'loading') === 'pending'
 )
+
+export const errorPokemons = createDraftSafeSelector(
+  pokemosState,
+  state => !!get(state, 'error')
+)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import * as colors from '@mui/material/colors';
@@ -8,8 +8,7 @@ import { get } from 'lodash'
 
 const Image = ({ pokemon }) => {
   const theme = useTheme()
-
-  if (!pokemon) return null
+  const [imgError, setImgError] = useState(false)
 
   return (
     <>
@@ -40,7 +39,7 @@ const Image = ({ pokemon }) => {
             position: 'relative'
           }}
         >
-          {!!get(pokemon, 'sprites.back_default') && (
+          {!!get(pokemon, 'sprites.back_default') && !imgError && (
             <CardMedia
               component="img"
               height="auto"
@@ -51,6 +50,8 @@ const Image = ({ pokemon }) => {
                 width: '10rem',
                 margin: 'auto',
               }}
+              onLoad={() => setImgError(false)}
+              onError={() => setImgError(true)}
             />
           )}
         </Box>
