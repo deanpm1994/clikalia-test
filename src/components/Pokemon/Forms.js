@@ -15,22 +15,26 @@ import { get } from 'lodash'
 import Form from './Form';
 
 const Forms = ({ pokemon }) => {
-  if (!get(pokemon, 'moves.length')) return null
+  if (!get(pokemon, 'forms.length')) return null
 
   return (
     <Accordion>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
       >
-        <Typography>Forms</Typography>
+        <Typography variant="h6">Forms</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <TableContainer>
           <Table stickyHeader size="small">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell align="right">Is Battle Only</TableCell>
+                <TableCell>
+                  <Typography variant="body1">ID</Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1">Is Battle Only</Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

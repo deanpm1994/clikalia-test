@@ -1,6 +1,9 @@
 import { createDraftSafeSelector } from '@reduxjs/toolkit';
+import { get } from 'lodash';
 
 import { pokemonsSelector } from '../reducers/pokemons'
+
+const pokemosState = state => get(state, 'pokemons')
 
 export const pokemonsSlice = (params, filter) => createDraftSafeSelector(
   pokemonsSelector.selectAll,
@@ -16,4 +19,9 @@ export const totalPokemons = createDraftSafeSelector(
   pokemons => !!pokemons
     ? pokemons.length
     : []
+)
+
+export const loadingPokemons = createDraftSafeSelector(
+  pokemosState,
+  state => get(state, 'loading') === 'pending'
 )

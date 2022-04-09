@@ -17,7 +17,7 @@ const Abilities = ({ pokemon }) => {
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
       >
-        <Typography>Abilities</Typography>
+        <Typography variant="h6">Abilities</Typography>
       </AccordionSummary>
       <AccordionDetails>
         {pokemon.abilities.map((ability, index) => (

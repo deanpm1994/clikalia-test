@@ -2,10 +2,13 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import * as colors from '@mui/material/colors';
+import { useTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import { get } from 'lodash'
 
 const Image = ({ pokemon }) => {
+  const theme = useTheme()
+
   if (!pokemon) return null
 
   return (
@@ -20,7 +23,7 @@ const Image = ({ pokemon }) => {
             top: 0,
             left: 0,
             right: 0,
-            background: colors.blue[300]
+            background: theme.palette.primary.main
           }}
         />
 
@@ -32,7 +35,7 @@ const Image = ({ pokemon }) => {
           sx={{
             borderRadius: '100%',
             border: '1px solid',
-            borderColor: colors.blue[100],
+            borderColor: theme.palette.primary.light,
             width: '10rem',
             minWidth: '5rem',
             margin: 'auto',

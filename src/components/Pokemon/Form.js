@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import Typography from '@mui/material/Typography';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
@@ -13,16 +14,13 @@ const Form = props => {
 
   const getForm = useCallback(
     async (name) => {
-      await api.get(`pokemon-form/${name}`)
-        .then(response => {
-          setForm(response.data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    [],
-  )
+      try {
+        const response = await api.get(`pokemon-form/${name}`)
+        setForm(response.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }, [])
 
   useEffect(() => {
     if (name)
@@ -33,7 +31,9 @@ const Form = props => {
 
   return (
     <TableRow>
-      <TableCell>{form.id}</TableCell>
+      <TableCell>
+        <Typography variant="body1">{form.id}</Typography>
+      </TableCell>
       <TableCell align="right">
         {form.is_battle_only
           ? <CheckCircleIcon color="success" />

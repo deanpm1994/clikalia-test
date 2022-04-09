@@ -5,6 +5,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import { get } from 'lodash'
 
 import api from '../../reducers/api'
@@ -14,35 +16,43 @@ import Moves from './Moves';
 import Forms from './Forms';
 
 const Pokemon = () => {
-  const { id } = useParams()
+  const { name } = useParams()
   const [pokemon, setPokemon] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const getPokemon = useCallback(
-    async (id) => {
-      await api.get(`pokemon/${id}`)
-        .then(response => {
-          setPokemon(response.data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    [],
-  )
+    async (name) => {
+      setLoading(true)
+      try {
+        const response = await api.get(`pokemon/${name}`)
+        setPokemon(response.data)
+        setLoading(false)
+      } catch (error) {
+        console.log(error)
+        setLoading(false)
+      }
+    }, [])
 
   useEffect(() => {
-    getPokemon(id)
-  }, [getPokemon, id])
+    getPokemon(name)
+  }, [getPokemon, name])
 
   return (
     <Container maxWidth="md" sx={{ padding: '2.5rem 0' }}>
+      <Backdrop
+        open={loading}
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
       <Card sx={{ maxWidth: '20rem', margin: 'auto' }}>
         <Image pokemon={pokemon} />
 
         <CardContent>
 
 
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h4" component="div">
             {get(pokemon, 'name')}
           </Typography>
 
@@ -58,9 +68,9 @@ const Pokemon = () => {
         <Moves pokemon={pokemon} />
 
         <Forms pokemon={pokemon} />
-      
+
       </Box>
-    
+
     </Container>
   )
 }

@@ -33,13 +33,16 @@ const Moves = ({ pokemon }) => {
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
       >
-        <Typography>Moves</Typography>
+        <Typography variant="h6">Moves</Typography>
       </AccordionSummary>
       <AccordionDetails>
         {moves.map((move, index) => (
           <List key={index}>
             <ListItem disablePadding>
-              <ListItemText primary={move.move.name} secondary={move.move.url}/>
+              <ListItemText 
+                primary={move.move.name} 
+                secondary={move.move.url}
+              />
               <IconButton
                 color="error"
                 onClick={() => deleteMove(index)}

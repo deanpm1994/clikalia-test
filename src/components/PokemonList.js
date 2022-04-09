@@ -9,6 +9,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TablePagination from '@mui/material/TablePagination';
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -41,7 +42,7 @@ const PokemonList = () => {
 
   return (
     <Container maxWidth="md" sx={{ paddingTop: '2.5rem' }}>
-      <Box sx={{ padding: '2rem .5rem' }}>
+      <Box sx={{ padding: '0 .5rem 2rem' }}>
         <TextField
           sx={{ width: '100%' }}
           label="Find pokemon"
@@ -51,12 +52,16 @@ const PokemonList = () => {
       </Box>
 
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: '80vh' }}>
+        <TableContainer>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>Nombre</TableCell>
-                <TableCell>URL</TableCell>
+                <TableCell>
+                  <Typography variant="body1">Nombre</Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="body1">URL</Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -66,7 +71,7 @@ const PokemonList = () => {
                 >
                   <TableCell>{pokemon.name}</TableCell>
                   <TableCell>
-                    <Link to={`/${[...pokemon.url.matchAll(/pokemon\/.*\/$/g)][0]}`}>
+                    <Link to={`/pokemon/${pokemon.name}`}>
                       {pokemon.url}
                     </Link>
                   </TableCell>
