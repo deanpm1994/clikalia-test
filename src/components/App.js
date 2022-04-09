@@ -44,7 +44,10 @@ function App() {
   }, [dispatch])
 
   return (
-    <Box sx={{ bgcolor: '#fff' }}>
+    <Box 
+      sx={{ bgcolor: '#fff' }}
+      data-testid="app-component"
+    >
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <Container maxWidth="md">
