@@ -18,7 +18,7 @@ export const loadPokemons = createAsyncThunk(
       })
       return response.data.results
     } catch (error) {
-      return rejectWithValue(error)
+      return rejectWithValue(!!error)
     }
   }
 )
@@ -35,6 +35,7 @@ const appSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(loadPokemons.pending, (state) => {
+      state.error = null
       if (state.loading === 'idle') {
         state.loading = 'pending'
       }

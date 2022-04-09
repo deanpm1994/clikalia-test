@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 let Pagination = props => {
   return (
     <TablePagination
+      data-testid="pagination-component"
       rowsPerPageOptions={[20]}
       component="div"
       rowsPerPage={20}

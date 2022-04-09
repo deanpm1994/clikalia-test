@@ -5,8 +5,12 @@ import PropTypes from 'prop-types'
 
 let Search = props => {
   return (
-    <Box sx={{ padding: '0 .5rem 2rem' }}>
+    <Box 
+      sx={{ padding: '0 .5rem 2rem' }}
+      data-testid="search-component"
+    >
       <TextField
+        data-testid="search-field"
         fullWidth
         color="secondary"
         label="Find pokemon"

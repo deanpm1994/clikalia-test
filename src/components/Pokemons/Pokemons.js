@@ -32,7 +32,10 @@ const Pokemons = () => {
   }
 
   return (
-    <Container maxWidth="md" sx={{ paddingTop: '2.5rem' }}>
+    <Container 
+      maxWidth="md" sx={{ paddingTop: '2.5rem' }}
+      data-testid="pokemons-component"
+    >
       <Search
         onChange={value => handleFilter(value)}
       />

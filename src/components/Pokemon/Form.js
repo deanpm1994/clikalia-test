@@ -29,7 +29,9 @@ const Form = props => {
   if (!name || !form) return null
 
   return (
-    <TableRow>
+    <TableRow
+      data-testid="form-component"
+    >
       <TableCell>
         <Typography variant="body1">{form.id}</Typography>
       </TableCell>

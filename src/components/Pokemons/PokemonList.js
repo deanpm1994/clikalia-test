@@ -14,7 +14,10 @@ let PokemonList = props => {
   if (!props.pokemons) return null
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper 
+      sx={{ width: '100%', overflow: 'hidden' }}
+      data-testid="list-component"
+    >
       <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -32,8 +35,14 @@ let PokemonList = props => {
               <TableRow
                 key={index}
               >
-                <TableCell>{pokemon.name}</TableCell>
-                <TableCell>
+                <TableCell
+                  data-testid="pokemon-name-cell"
+                >
+                  {pokemon.name}
+                </TableCell>
+                <TableCell
+                  data-testid="pokemon-url-cell"
+                >
                   <Link to={`/pokemon/${pokemon.name}`}>
                     {pokemon.url}
                   </Link>
