@@ -14,10 +14,12 @@ export const pokemonsSlice = (params, filter) => createDraftSafeSelector(
     : []
 )
 
-export const totalPokemons = createDraftSafeSelector(
+export const totalPokemons = filter => createDraftSafeSelector(
   pokemonsSelector.selectAll,
   pokemons => !!pokemons
-    ? pokemons.length
+    ? pokemons
+      .filter(pokemon => pokemon.name.includes(filter))
+      .length
     : []
 )
 

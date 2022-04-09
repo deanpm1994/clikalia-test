@@ -8,7 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-import PokemonList from './components/PokemonList';
+import Pokemons from './components/Pokemons/Pokemons';
 import Pokemon from './components/Pokemon/Pokemon';
 import { loadPokemons } from './reducers/pokemons'
 import { loadingPokemons } from './selectors/pokemons'
@@ -59,7 +59,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/pokemon/:name" element={<Pokemon />} />
-              <Route path="/" element={<PokemonList />} />
+              <Route path="/" element={<Pokemons />} />
             </Routes>
           </BrowserRouter>
         </Box>
