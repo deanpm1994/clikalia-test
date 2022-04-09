@@ -15,7 +15,10 @@ let Retry = props => {
         zIndex: (theme) => theme.zIndex.drawer + 1,
       }}
     >
-      <Grid textAlign="center">
+      <Grid 
+        textAlign="center"
+        data-testid="retry-component"
+      >
         <Typography marginBottom="1rem" variant="h6">
           Something is wrong 😒
         </Typography>
