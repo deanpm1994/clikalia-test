@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Prueba técnica Clikalia
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Se proporciona un api con la con la base de datos de Pokémon que deberá ser utilizada con el fin de crear
+2 pantallas. Se recomienda la utilización de [React](https://es.reactjs.org/) y [Material UI](https://mui.com/) para llevar a cabo la tarea.
 
-## Available Scripts
+## Resumen
+### API de pokemons
 
-In the project directory, you can run:
+Para la prueba es necesario utilizar el API [https://pokeapi.co/](https://pokeapi.co/). Este API tiene la característica de ser solo lectura, quiere decir que solo se pueden hacer llamados de tipo GET. Otra peculiaridad es que el API no tiene parámetros de orden en ningún endpoint.
 
-### `npm start`
+### Tabla de pokemones
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Muestra el nombre y url de todos los pokemones en una tabla, donde se ven 20 pokemones a la vez, haciendo paginación. Los pokemones están ordenados alfabéticamente por sus nombres. En la parte inferior se pueden apreciar las opciones de paginación.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+También se pueden hacer filtros por nombre utilizando un campo de texto en la parte superior de la tabla. Los filtros se hacen inmediatamente después de cambiar el valor del campo (podría haberse implementado con un delay)
 
-### `npm test`
+Clicar en la url de un pokemón de la lista lleva a ver los detalles del mismo.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Detalles de pokemón
 
-### `npm run build`
+Muestra los detalles del pokemón seleccionado en la vista anterior. Se muestra una imagen (no todos la tienen), el nombre, la lista de habilidades, lista de movimientos ordenados descendentemente por la url del movimiento (se muestra la url para comprobar) y una lista con datos de las formas del pokemón (id de la forma y el parámetro `is_battle_only`). Los movimientos se pueden eliminar de la lista.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### A tener en cuenta
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- El API no tiene parámetros para ordenar los resultados a través de los endpoints. Para solucionar el orden alfabético en la tabla se hace un pedido para traer todos los pokemones cuando se accede por primera vez a la aplicación utilizando como parámetro `limit=-1` y luego se ordenan.
+- El API es de solo lectura. Para "eliminar" los movimientos de un pokemón se modificó el estado del componente que muestra las movimientos simulando la eliminación (de manera temporal)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Detalles técnicos
 
-### `npm run eject`
+### Principales librerías
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Librerías | Datos |
+|-------|---------|
+| react, react-dom | La nueva versión (18) de React trae consigo cambios que aún no han tenido soporte en librerías como `create-react-app` o `@testing-library` |
+| axios | Utilizada para los llamados al API |
+| lodash | Librería popularmente utilizada con un grupo de funciones útiles para el trabajo con JavaScript |
+| @emotion/react, @emotion/styled, @mui/icons-material, @mui/material | Utilizada en el diseño de la aplicación. Con esta librería no fue necesario la utilización de archivos de estilo adicionales |
+| @testing-library/jest-dom, @testing-library/react, @testing-library/user-event | Remplazo de Enzyme, utilizada en las pruebas unitarias de la aplicación |
+| @reduxjs/toolkit, react-redux | Manejo del estado global de la aplicación. Se utiliza para almacenar todos los pokemones cuando se accede por primera vez a la aplicación. El orden y los filtros es, en parte, posible a estas librerías |
+| react-router-dom | Utilizada para mostrar las diferentes pantallas (o componentes) de la aplicación |
