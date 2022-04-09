@@ -27,23 +27,33 @@ const Image = ({ pokemon }) => {
           }}
         />
 
-        <CardMedia
-          component="img"
-          height="auto"
-          image={get(pokemon, 'sprites.back_default')}
-          alt={get(pokemon, 'name')}
+        <Box
           sx={{
             borderRadius: '100%',
             border: '1px solid',
             borderColor: theme.palette.primary.light,
             width: '10rem',
-            minWidth: '5rem',
+            height: '10rem',
             margin: 'auto',
             zIndex: 1,
             background: colors.common.white,
             position: 'relative'
           }}
-        />
+        >
+          {!!get(pokemon, 'sprites.back_default') && (
+            <CardMedia
+              component="img"
+              height="auto"
+              image={get(pokemon, 'sprites.back_default')}
+              alt={get(pokemon, 'name')}
+              sx={{
+                borderRadius: '100%',
+                width: '10rem',
+                margin: 'auto',
+              }}
+            />
+          )}
+        </Box>
 
       </Box>
 
