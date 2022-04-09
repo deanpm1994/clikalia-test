@@ -8,5 +8,12 @@ describe('pokemons component', () => {
 
     expect(queryByTestId('pokemons-component')).not.toBeNull();
   })
+  
+  it('should render nested components', () => {
+    const { queryByTestId } = render(<Pokemons />);
 
+    expect(queryByTestId('search-component')).not.toBeNull();
+    expect(queryByTestId('list-component')).not.toBeNull();
+    expect(queryByTestId('pagination-component')).not.toBeNull();
+  })
 })
