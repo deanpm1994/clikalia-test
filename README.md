@@ -1,10 +1,10 @@
 # Prueba técnica Clikalia
 
-Se proporciona un api con la con la base de datos de Pokémon que deberá ser utilizada con el fin de crear
+Se proporciona un API con la base de datos de Pokemón que deberá ser utilizada con el fin de crear
 2 pantallas. Se recomienda la utilización de [React](https://es.reactjs.org/) y [Material UI](https://mui.com/) para llevar a cabo la tarea.
 
 ## Resumen
-### API de pokemons
+### API de pokemones
 
 Para la prueba es necesario utilizar el API [https://pokeapi.co/](https://pokeapi.co/). Este API tiene la característica de ser solo lectura, quiere decir que solo se pueden hacer llamados de tipo GET. Otra peculiaridad es que el API no tiene parámetros de orden en ningún endpoint.
 
@@ -12,7 +12,7 @@ Para la prueba es necesario utilizar el API [https://pokeapi.co/](https://pokeap
 
 Muestra el nombre y url de todos los pokemones en una tabla, donde se ven 20 pokemones a la vez, haciendo paginación. Los pokemones están ordenados alfabéticamente por sus nombres. En la parte inferior se pueden apreciar las opciones de paginación.
 
-También se pueden hacer filtros por nombre utilizando un campo de texto en la parte superior de la tabla. Los filtros se hacen inmediatamente después de cambiar el valor del campo (podría haberse implementado con un delay)
+También se pueden hacer filtros por nombre utilizando un campo de texto en la parte superior de la tabla. Los filtros se hacen inmediatamente después de cambiar el valor del campo (podría haberse implementado con un delay).
 
 Clicar en la url de un pokemón de la lista lleva a ver los detalles del mismo.
 
@@ -23,7 +23,7 @@ Muestra los detalles del pokemón seleccionado en la vista anterior. Se muestra 
 ### A tener en cuenta
 
 - El API no tiene parámetros para ordenar los resultados a través de los endpoints. Para solucionar el orden alfabético en la tabla se hace un pedido para traer todos los pokemones cuando se accede por primera vez a la aplicación utilizando como parámetro `limit=-1` y luego se ordenan.
-- El API es de solo lectura. Para "eliminar" los movimientos de un pokemón se modificó el estado del componente que muestra las movimientos simulando la eliminación (de manera temporal)
+- El API es de solo lectura. Para "eliminar" los movimientos de un pokemón se modificó el estado del componente que muestra las movimientos simulando la eliminación (de manera temporal).
 
 ## Detalles técnicos
 
