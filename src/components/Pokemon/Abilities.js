@@ -20,7 +20,9 @@ const Abilities = ({ pokemon }) => {
         <Typography variant="h6">Abilities</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        {pokemon.abilities.map((ability, index) => (
+        {pokemon.abilities
+          .filter(ability => !get(ability, 'is_hidden'))
+          .map((ability, index) => (
           <List key={index}>
             <ListItem disablePadding>
               <ListItemText primary={ability.ability.name} />

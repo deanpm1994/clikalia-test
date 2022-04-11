@@ -9,14 +9,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { get, sortBy, reverse } from 'lodash'
+import { get, reverse } from 'lodash'
 
 const Moves = ({ pokemon }) => {
   const [moves, setMoves] = useState([])
 
   useEffect(() => {
     if (get(pokemon, 'moves.length')) {
-      setMoves(reverse(sortBy(pokemon.moves, ['move.url'])))
+      setMoves(reverse(pokemon.moves))
     }
   }, [pokemon])
 
